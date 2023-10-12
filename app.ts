@@ -5,17 +5,19 @@ import compression from 'compression'
 import logger from 'morgan'
 import cors from 'cors'
 import env from 'dotenv'
-import route from './src/interfaces/routes'
+import grpcServer from './src/interfaces/grpc-config/grpc-server'
+import addNewNodal from './src/application/events/consumers/add-new-nodal'
 
 class nodeApp {
   public app: Application
 
   constructor () {
+    env.config()
     this.app = express()
 
     this.initialiseMiddleware()
-    this.initialiseRoutes()
-    env.config()
+    this.initiliseGatewayListner()
+    this.messageConsumers()
   }
 
   private initialiseMiddleware (): void {
@@ -28,12 +30,16 @@ class nodeApp {
     this.app.use(express.urlencoded({ extended: false }))
   }
 
-  private initialiseRoutes (): void {
-    this.app.use('/apex', route)
+  private messageConsumers() {
+    addNewNodal()
   }
 
-  public listen (): void {
-    this.app.listen(process.env.PORT, () => { console.log('apex service is running at', process.env.PORT) })
+  private initiliseGatewayListner ():void {
+    grpcServer()
+  }
+
+  public listen (port:string): void {
+    this.app.listen(process.env.PORT, () => { console.log('apex service is running at',port) })
   }
 }
 
