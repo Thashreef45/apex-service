@@ -10,7 +10,16 @@ const apexSchema: Schema = new Schema({
   phone: Number,
   email: String,
   password:String,
-  fdm: Array,
+  fdm: {
+    sending: {
+      type: [String],
+      default: [],
+    },
+    received: {
+      type: [String],
+      default: [],
+    },
+  },
   consignmentPrefix : String,
 })
 

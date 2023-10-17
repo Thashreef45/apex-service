@@ -7,6 +7,8 @@ import cors from 'cors'
 import env from 'dotenv'
 import grpcServer from './src/interfaces/grpc-config/grpc-server'
 import addNewNodal from './src/application/events/consumers/add-new-nodal'
+import getApexDetailsByConsignmetnPrefix from './src/application/events/consumers/get-apex-details-by-prefix'
+import recieveSendingfdms from './src/application/events/consumers/recieve-sending-fdms'
 
 class nodeApp {
   public app: Application
@@ -32,6 +34,8 @@ class nodeApp {
 
   private messageConsumers() {
     addNewNodal()
+    getApexDetailsByConsignmetnPrefix()
+    recieveSendingfdms()
   }
 
   private initiliseGatewayListner ():void {
