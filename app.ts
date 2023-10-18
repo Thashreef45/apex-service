@@ -9,6 +9,7 @@ import grpcServer from './src/interfaces/grpc-config/grpc-server'
 import addNewNodal from './src/application/events/consumers/add-new-nodal'
 import getApexDetailsByConsignmetnPrefix from './src/application/events/consumers/get-apex-details-by-prefix'
 import recieveSendingfdms from './src/application/events/consumers/recieve-sending-fdms'
+import removeFdmFromApexSending from './src/application/events/consumers/remove-apex-sending-fdm'
 
 class nodeApp {
   public app: Application
@@ -36,6 +37,7 @@ class nodeApp {
     addNewNodal()
     getApexDetailsByConsignmetnPrefix()
     recieveSendingfdms()
+    removeFdmFromApexSending()
   }
 
   private initiliseGatewayListner ():void {

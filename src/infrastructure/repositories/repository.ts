@@ -24,7 +24,16 @@ export default {
     return await model.updateOne(
       { id: id },
       {
-        $addToSet: {'fdm.sending':awb}
+        $addToSet: { 'fdm.sending': awb }
+      }
+    )
+  },
+
+  removeFdmFromSendingQueue: async (id: string, awb: string) => {
+    return await model.updateOne(
+      { id: id },
+      {
+        $pull: {'fdm.sending':awb}
       }
     )
   }
