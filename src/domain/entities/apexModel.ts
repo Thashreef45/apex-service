@@ -15,7 +15,7 @@ const apexSchema: Schema = new Schema({
       type: [String],
       default: [],
     },
-    received: {
+    recieved: {
       type: [String],
       default: [],
     },
