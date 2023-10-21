@@ -10,6 +10,7 @@ import addNewNodal from './src/application/events/consumers/add-new-nodal'
 import getApexDetailsByConsignmetnPrefix from './src/application/events/consumers/get-apex-details-by-prefix'
 import recieveSendingfdms from './src/application/events/consumers/recieve-sending-fdms'
 import removeFdmFromApexSending from './src/application/events/consumers/remove-apex-sending-fdm'
+import assignFdmToRecievedQueue from './src/application/events/consumers/assign-recieved-fdm'
 
 class nodeApp {
   public app: Application
@@ -38,6 +39,7 @@ class nodeApp {
     getApexDetailsByConsignmetnPrefix()
     recieveSendingfdms()
     removeFdmFromApexSending()
+    assignFdmToRecievedQueue()
   }
 
   private initiliseGatewayListner ():void {

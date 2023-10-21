@@ -3,7 +3,7 @@ import { config } from 'dotenv'
 import repository from '../../../infrastructure/repositories/repository'
 config()
 
-const queue = 'apex-details-to-nodal'
+const queue = 'get-apex-details-by-prefix'
 const URL = String(process.env.RabbitMq_PORT)
 
 const getApexDetailsByConsignmetnPrefix = async() => {
@@ -26,7 +26,7 @@ const getApexDetailsByConsignmetnPrefix = async() => {
 
 const executeResponse = async(data: any) => {
     data = JSON.parse(data)
-    let response:any = await repository.apexDatabyPrefix(data.prefix)
+    const response:any = await repository.apexDatabyPrefix(data.prefix)
     return {id:response.id,address:response.address,name:response.name}
 }
 

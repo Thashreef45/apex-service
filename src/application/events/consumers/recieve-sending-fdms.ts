@@ -10,6 +10,7 @@ const queue = 'trasfer-fdm-nodal-to-apex'
 const recieveSendingfdms = async() => {
     const connect = await amqp.connect(URL)
     const channel = await connect.createChannel()
+    await channel.assertQueue(queue)
 
     await channel.consume(queue,(data:any)=>{
         channel.ack(data)

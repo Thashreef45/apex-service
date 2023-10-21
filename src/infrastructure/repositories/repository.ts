@@ -36,7 +36,16 @@ export default {
         $pull: {'fdm.sending':awb}
       }
     )
-  }
+  },
+
+  pushFdmToRecievedQueue : async (id:string,awb:string) => {
+    return await model.updateOne(
+      {id:id},
+      {
+        $addToSet : {'fdm.recieved':awb}
+      }
+    )
+  },
 
 
 
